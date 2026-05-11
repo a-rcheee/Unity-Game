@@ -24,28 +24,9 @@ public class Parallax : MonoBehaviour
             {
                 cam = mainCam.transform;
             }
-            else
-            {
-                Debug.LogError("Parallax: Main Camera not found. Set camera tag to MainCamera or assign cam manually.");
-                enabled = false;
-                return;
-            }
-        }
-
-        if (bg1 == null || bg2 == null)
-        {
-            Debug.LogError("Parallax: bg1 or bg2 is not assigned in Inspector.");
-            enabled = false;
-            return;
         }
 
         SpriteRenderer sr = bg1.GetComponent<SpriteRenderer>();
-        if (sr == null)
-        {
-            Debug.LogError("Parallax: bg1 has no SpriteRenderer.");
-            enabled = false;
-            return;
-        }
 
         width = sr.bounds.size.x;
         startCamX = cam.position.x;

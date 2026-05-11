@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    public string nextLevelName = "Level2";
+    public string nextLevelName = "lvl_2";
+    public string unlockKey = "Level2Unlocked";
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,8 +12,11 @@ public class Finish : MonoBehaviour
 
         if (player != null)
         {
-            PlayerPrefs.SetInt("Level2Unlocked", 1);
-            PlayerPrefs.Save();
+            if (!string.IsNullOrEmpty(unlockKey))
+            {
+                PlayerPrefs.SetInt(unlockKey, 1);
+                PlayerPrefs.Save();
+            }
 
             SceneManager.LoadScene(nextLevelName);
         }

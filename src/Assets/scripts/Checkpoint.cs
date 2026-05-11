@@ -10,9 +10,13 @@ public class Checkpoint : MonoBehaviour
     private NewMonoBehaviourScript player;
     private Animator anim;
 
+    public AudioClip activateSound;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -42,6 +46,11 @@ public class Checkpoint : MonoBehaviour
             }
 
             player.SetCheckpoint(point);
+        }
+
+        if (audioSource != null && activateSound != null)
+        {
+            audioSource.PlayOneShot(activateSound);
         }
     }
 
