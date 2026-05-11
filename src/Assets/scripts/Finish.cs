@@ -3,14 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    public string finishTag = "Finish";
-    public string menuSceneName = "Menu";
+    public string nextLevelName = "Level2";
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(finishTag))
+        NewMonoBehaviourScript player = other.GetComponentInParent<NewMonoBehaviourScript>();
+
+        if (player != null)
         {
-            SceneManager.LoadScene(menuSceneName);
+            PlayerPrefs.SetInt("Level2Unlocked", 1);
+            PlayerPrefs.Save();
+
+            SceneManager.LoadScene(nextLevelName);
         }
     }
 }
